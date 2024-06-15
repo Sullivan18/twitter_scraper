@@ -15,6 +15,8 @@ warnings.filterwarnings("ignore", category=FutureWarning, module='huggingface_hu
 
 def preprocess_text(text):
     """Preprocessa o texto para melhorar a análise de sentimento"""
+    if not isinstance(text, str):
+        text = str(text)
     text = text.lower()  # Converte para minúsculas
     text = re.sub(r'http\S+', '', text)  # Remove URLs
     text = re.sub(r'@\w+', '', text)  # Remove menções
@@ -22,6 +24,7 @@ def preprocess_text(text):
     text = re.sub(r'[^a-zA-Z\s]', '', text)  # Remove caracteres especiais
     text = text.strip()  # Remove espaços extras
     return text
+
 
 def analyze_sentiment(text, tokenizer, model):
     try:
@@ -41,7 +44,7 @@ def analyze_sentiment(text, tokenizer, model):
         logger.error(f"Error analyzing sentiment for text: {text}. Error: {e}")
         return "error", 0.0
 
-def save_content_and_analyze_sentiment(input_csv, output_csv):
+def save_content_and_analyze_sentiment(input_csv):
     try:
         # Carregar o modelo e o tokenizador
         model_name = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
@@ -56,13 +59,13 @@ def save_content_and_analyze_sentiment(input_csv, output_csv):
         # Verificar se a coluna 'Content' existe
         if 'Content' not in df.columns:
             logger.error("Input CSV does not contain 'Content' column.")
-            return
+            return []
 
         # Adicionar coluna Identifier
         df['Identifier'] = ['tweet{}'.format(i + 1) for i in range(len(df))]
 
         # Preprocessar o texto e analisar sentimentos
-        df['Content'] = df['Content'].apply(preprocess_text)
+        df['Content'] = df['Content'].apply(lambda x: preprocess_text(x) if pd.notnull(x) else '')
         df[['Sentiment', 'Sentiment_Score']] = df['Content'].apply(
             lambda x: pd.Series(analyze_sentiment(x, tokenizer, model))
         )
@@ -70,17 +73,19 @@ def save_content_and_analyze_sentiment(input_csv, output_csv):
         # Selecionar apenas as colunas Identifier, Content, Sentiment e Sentiment_Score
         df_content_only = df[['Identifier', 'Content', 'Sentiment', 'Sentiment_Score']]
         
-        # Salvar o CSV de saída
-        df_content_only.to_csv(output_csv, index=False, encoding='utf-8')
-        logger.info(f"Saved content and sentiment analysis to {output_csv}")
+        # Converter para JSON
+        results = df_content_only.to_dict(orient='records')
+        logger.info("Sentiment analysis completed and converted to JSON")
+        return results
     except Exception as e:
         logger.error(f"An error occurred during sentiment analysis: {e}")
         raise
 
+
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        logger.error("Usage: python save_content_and_analyze_sentiment.py <input_csv> <output_csv>")
+    if len(sys.argv) != 2:
+        logger.error("Usage: python save_content_and_analyze_sentiment.py <input_csv>")
     else:
         input_csv = sys.argv[1]
-        output_csv = sys.argv[2]
-        save_content_and_analyze_sentiment(input_csv, output_csv)
+        results = save_content_and_analyze_sentiment(input_csv)
+        print(results)

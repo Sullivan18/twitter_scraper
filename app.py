@@ -4,6 +4,9 @@ import subprocess
 import os
 import logging
 
+# Importar a função save_content_and_analyze_sentiment
+from save_content_and_analyze_sentiment import save_content_and_analyze_sentiment
+
 # Configuração do logger
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -23,8 +26,8 @@ def scrape(user_request: UserRequest):
     if username:
         try:
             logger.info(f"Starting scraper for user: {username}")
-            # Execute o comando do scraper
-            command = f"python scraper -t 100 -u {username}"
+            # Execute o comando do scraper (simulando a execução de um script)
+            command = f"python scraper.py -t 100 -u {username}"
             result = subprocess.run(command, shell=True, capture_output=True, text=True)
             logger.info(f"Scraper output: {result.stdout}")
             logger.error(f"Scraper errors: {result.stderr}")
@@ -36,18 +39,11 @@ def scrape(user_request: UserRequest):
                 raise HTTPException(status_code=500, detail="No CSV files found.")
             
             latest_csv = os.path.join(tweets_folder, csv_files[-1])
-            output_csv = os.path.join(tweets_folder, f'content_only_tweets_{username}.csv')
             
-            # Chama o script save_content_and_analyze_sentiment.py
-            extract_command = f"python save_content_and_analyze_sentiment.py {latest_csv} {output_csv}"
-            extract_result = subprocess.run(extract_command, shell=True, capture_output=True, text=True)
-            logger.info(f"Extraction output: {extract_result.stdout}")
-            logger.error(f"Extraction errors: {extract_result.stderr}")
+            # Chama a função save_content_and_analyze_sentiment
+            results = save_content_and_analyze_sentiment(latest_csv)
             
-            # Remove o CSV original
-            os.remove(latest_csv)
-            
-            return {"message": f"Scraping for user {username} started. Content saved to {output_csv}"}
+            return {"message": f"Scraping for user {username} completed.", "results": results}
         except Exception as e:
             logger.error(f"An error occurred: {e}")
             raise HTTPException(status_code=500, detail=str(e))
