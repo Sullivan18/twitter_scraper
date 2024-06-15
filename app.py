@@ -27,7 +27,7 @@ def scrape(user_request: UserRequest):
         try:
             logger.info(f"Starting scraper for user: {username}")
             # Execute o comando do scraper (simulando a execução de um script)
-            command = f"python scraper.py -t 100 -u {username}"
+            command = f"python scraper -t 100 -u {username}"
             result = subprocess.run(command, shell=True, capture_output=True, text=True)
             logger.info(f"Scraper output: {result.stdout}")
             logger.error(f"Scraper errors: {result.stderr}")
