@@ -3,7 +3,6 @@ from pydantic import BaseModel
 import subprocess
 import os
 import logging
-from datetime import datetime
 
 # Configuração do logger
 logging.basicConfig(level=logging.INFO)
