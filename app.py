@@ -27,7 +27,7 @@ def scrape(user_request: UserRequest):
         try:
             logger.info(f"Starting scraper for user: {username}")
             # Execute o comando do scraper (simulando a execução de um script)
-            command = f"python scraper -t 100 -u {username}"
+            command = f"python scraper -t 30 -u {username}"
             result = subprocess.run(command, shell=True, capture_output=True, text=True)
             logger.info(f"Scraper output: {result.stdout}")
             logger.error(f"Scraper errors: {result.stderr}")
@@ -51,4 +51,4 @@ def scrape(user_request: UserRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8001)
