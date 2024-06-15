@@ -9,6 +9,10 @@ app = FastAPI()
 class UserRequest(BaseModel):
     username: str
 
+@app.get("/")
+def read_root():
+    return {"message": "API is working. Use the /scrape endpoint to start scraping."}
+
 @app.post("/scrape")
 def scrape(user_request: UserRequest):
     username = user_request.username
