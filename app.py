@@ -34,8 +34,8 @@ def scrape(user_request: UserRequest):
             latest_csv = os.path.join(tweets_folder, csv_files[-1])
             output_csv = os.path.join(tweets_folder, f'content_only_tweets_{username}.csv')
             
-            # Chama o script save_content_only.py
-            extract_command = f"python save_content_only.py {latest_csv} {output_csv}"
+            # Chama o script save_content_and_analyze_sentiment.py
+            extract_command = f"python save_content_and_analyze_sentiment.py {latest_csv} {output_csv}"
             extract_result = subprocess.run(extract_command, shell=True, capture_output=True, text=True)
             print(f"Extraction output: {extract_result.stdout}")
             print(f"Extraction errors: {extract_result.stderr}")
@@ -52,4 +52,3 @@ def scrape(user_request: UserRequest):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
-
