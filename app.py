@@ -2,7 +2,12 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import subprocess
 import os
+import logging
 from datetime import datetime
+
+# Configuração do logger
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
@@ -18,12 +23,12 @@ def scrape(user_request: UserRequest):
     username = user_request.username
     if username:
         try:
-            print(f"Starting scraper for user: {username}")
+            logger.info(f"Starting scraper for user: {username}")
             # Execute o comando do scraper
-            command = f"python scraper -t 10 -u {username}"
+            command = f"python scraper -t 100 -u {username}"
             result = subprocess.run(command, shell=True, capture_output=True, text=True)
-            print(f"Scraper output: {result.stdout}")
-            print(f"Scraper errors: {result.stderr}")
+            logger.info(f"Scraper output: {result.stdout}")
+            logger.error(f"Scraper errors: {result.stderr}")
 
             # Localizar o último CSV gerado na pasta de tweets
             tweets_folder = './tweets/'
@@ -37,15 +42,15 @@ def scrape(user_request: UserRequest):
             # Chama o script save_content_and_analyze_sentiment.py
             extract_command = f"python save_content_and_analyze_sentiment.py {latest_csv} {output_csv}"
             extract_result = subprocess.run(extract_command, shell=True, capture_output=True, text=True)
-            print(f"Extraction output: {extract_result.stdout}")
-            print(f"Extraction errors: {extract_result.stderr}")
+            logger.info(f"Extraction output: {extract_result.stdout}")
+            logger.error(f"Extraction errors: {extract_result.stderr}")
             
             # Remove o CSV original
             os.remove(latest_csv)
             
             return {"message": f"Scraping for user {username} started. Content saved to {output_csv}"}
         except Exception as e:
-            print(f"An error occurred: {e}")
+            logger.error(f"An error occurred: {e}")
             raise HTTPException(status_code=500, detail=str(e))
     raise HTTPException(status_code=400, detail="Username is required.")
 
