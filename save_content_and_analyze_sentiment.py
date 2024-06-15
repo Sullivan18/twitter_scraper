@@ -91,6 +91,7 @@ custom_dictionary = {
     }
 }
 
+
 def analyze_custom_category(text, dictionary):
     """Analisa o texto usando um dicionário personalizado e retorna a categoria"""
     logger.info(f"Analyzing custom category for text: {text}")
