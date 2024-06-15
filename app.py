@@ -20,7 +20,7 @@ def scrape(user_request: UserRequest):
         try:
             print(f"Starting scraper for user: {username}")
             # Execute o comando do scraper
-            command = f"python scrape -t 10 -u {username}"
+            command = f"python scraper -t 10 -u {username}"
             result = subprocess.run(command, shell=True, capture_output=True, text=True)
             print(f"Scraper output: {result.stdout}")
             print(f"Scraper errors: {result.stderr}")
@@ -52,3 +52,4 @@ def scrape(user_request: UserRequest):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
