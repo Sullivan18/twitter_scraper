@@ -7,6 +7,7 @@ import logging
 import warnings
 from unidecode import unidecode
 
+
 # Configuração do logger para salvar em arquivo
 logging.basicConfig(level=logging.INFO, filename='analysis.log', filemode='w', format='%(asctime)s - %(levellevel)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -18,8 +19,8 @@ def preprocess_text(text):
     """Preprocessa o texto para melhorar a análise de sentimento"""
     if not isinstance(text, str):
         text = str(text)
-    text = text.lower()  # Converte para minúsculas
-    text = unidecode(text)  # Remove acentuação
+    text = text.lower()  
+    text = unidecode(text)  
     text = re.sub(r'[^\w\s]', '', text)  # Remove pontuações
     text = text.strip()  # Remove espaços extras
     return text
@@ -33,8 +34,8 @@ def normalize_word(word):
 
 def preprocess_csv(df):
     """Preprocessa o DataFrame do CSV para análise de sentimento"""
-    # Selecionar apenas a coluna 'Content'
-    df = df[['Content']].copy()
+    # Selecionar as colunas 'Content' e 'Timestamp'
+    df = df[['Content', 'Timestamp']].copy()
     
     # Preencher valores nulos
     df.loc[:, 'Content'] = df['Content'].fillna('')
@@ -142,8 +143,8 @@ def save_content_and_analyze_sentiment(input_csv):
             lambda x: pd.Series(analyze_custom_category(x, custom_dictionary))
         )
         
-        # Selecionar apenas as colunas Identifier, Content, Sentiment, Sentiment_Score, Custom_Category e Custom_Score
-        df_content_only = df[['Identifier', 'Content', 'Sentiment', 'Sentiment_Score', 'Custom_Category', 'Custom_Score']]
+        # Selecionar apenas as colunas Identifier, Content, Sentiment, Sentiment_Score, Custom_Category, Custom_Score, Timestamp
+        df_content_only = df[['Identifier', 'Content', 'Timestamp', 'Sentiment', 'Sentiment_Score', 'Custom_Category', 'Custom_Score']]
         
         # Converter para JSON
         results = df_content_only.to_dict(orient='records')
