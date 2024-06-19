@@ -3,12 +3,18 @@ from pydantic import BaseModel
 import subprocess
 import os
 import logging
+import pandas as pd
+import re
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
+from unidecode import unidecode
+import warnings
 
 # Importar a função save_content_and_analyze_sentiment
 from save_content_and_analyze_sentiment import save_content_and_analyze_sentiment
 
 # Configuração do logger
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()

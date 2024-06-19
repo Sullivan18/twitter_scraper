@@ -15,34 +15,29 @@ logger = logging.getLogger(__name__)
 # Suprimir avisos específicos
 warnings.filterwarnings("ignore", category=FutureWarning, module='huggingface_hub.file_download')
 
+# Função para análise de sentimentos e categorias personalizadas
 def preprocess_text(text):
     """Preprocessa o texto para melhorar a análise de sentimento"""
     if not isinstance(text, str):
         text = str(text)
-    text = text.lower()  
-    text = unidecode(text)  
-    text = re.sub(r'[^\w\s]', '', text)  # Remove pontuações
-    text = text.strip()  # Remove espaços extras
+    text = text.lower()
+    text = unidecode(text)
+    text = re.sub(r'[^\w\s]', '', text)
+    text = text.strip()
     return text
 
 def normalize_word(word):
     """Normaliza a palavra removendo acentos, convertendo para minúsculas e lematizando"""
     word = unidecode(word.lower())
     if word.endswith('a') and len(word) > 1:
-        word = word[:-1] + 'o'  # Transforma palavras femininas para masculinas
+        word = word[:-1] + 'o'
     return word
 
 def preprocess_csv(df):
     """Preprocessa o DataFrame do CSV para análise de sentimento"""
-    # Selecionar as colunas 'Content' e 'Timestamp'
     df = df[['Content', 'Timestamp']].copy()
-    
-    # Preencher valores nulos
-    df.loc[:, 'Content'] = df['Content'].fillna('')
-    
-    # Adicionar coluna Identifier
-    df.loc[:, 'Identifier'] = ['tweet{}'.format(i + 1) for i in range(len(df))]
-    
+    df['Content'] = df['Content'].fillna('')
+    df['Identifier'] = ['tweet{}'.format(i + 1) for i in range(len(df))]
     return df
 
 def analyze_sentiment(text, tokenizer, model):
@@ -95,21 +90,13 @@ custom_dictionary = {
 
 def analyze_custom_category(text, dictionary):
     """Analisa o texto usando um dicionário personalizado e retorna a categoria"""
-    logger.info(f"Analyzing custom category for text: {text}")
     score = 0
     words = text.split()
     for word in words:
-        clean_word = re.sub(r'[^\w\s]', '', word)
-        normalized_word = normalize_word(clean_word)
-        logger.info(f"Checking word: {clean_word} (normalized: {normalized_word})")
+        normalized_word = normalize_word(word)
         for category, words_dict in dictionary.items():
             if normalized_word in words_dict:
-                logger.info(f"Found word '{normalized_word}' in category '{category}' with score {words_dict[normalized_word]}")
                 score += words_dict[normalized_word]
-            else:
-                logger.info(f"Word '{normalized_word}' not found in category '{category}'")
-    
-    logger.info(f"Total custom score for text: {score}")
     
     if score > 0:
         return "felicidade", score
@@ -120,33 +107,26 @@ def analyze_custom_category(text, dictionary):
 
 def save_content_and_analyze_sentiment(input_csv):
     try:
-        # Carregar o modelo e o tokenizador
         model_name = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
         tokenizer = AutoTokenizer.from_pretrained(model_name)
         model = AutoModelForSequenceClassification.from_pretrained(model_name)
         logger.info("Model and tokenizer loaded successfully")
 
-        # Ler o CSV de entrada
         df = pd.read_csv(input_csv)
         logger.info(f"Input CSV loaded: {input_csv}")
         
-        # Pré-processar o DataFrame
         df = preprocess_csv(df)
         logger.info("CSV preprocessed successfully")
 
-        # Preprocessar o texto e analisar sentimentos
         df['Content'] = df['Content'].apply(lambda x: preprocess_text(x) if pd.notnull(x) else '')
-        df[['Sentiment', 'Sentiment_Score']] = df['Content'].apply(
-            lambda x: pd.Series(analyze_sentiment(x, tokenizer, model))
-        )
-        df[['Custom_Category', 'Custom_Score']] = df['Content'].apply(
-            lambda x: pd.Series(analyze_custom_category(x, custom_dictionary))
-        )
+        sentiments = [analyze_sentiment(text, tokenizer, model) for text in df['Content']]
+        custom_categories = [analyze_custom_category(text, custom_dictionary) for text in df['Content']]
         
-        # Selecionar apenas as colunas Identifier, Content, Sentiment, Sentiment_Score, Custom_Category, Custom_Score, Timestamp
+        df[['Sentiment', 'Sentiment_Score']] = pd.DataFrame(sentiments, index=df.index)
+        df[['Custom_Category', 'Custom_Score']] = pd.DataFrame(custom_categories, index=df.index)
+        
         df_content_only = df[['Identifier', 'Content', 'Timestamp', 'Sentiment', 'Sentiment_Score', 'Custom_Category', 'Custom_Score']]
         
-        # Converter para JSON
         results = df_content_only.to_dict(orient='records')
         logger.info("Sentiment analysis completed and converted to JSON")
         return results
