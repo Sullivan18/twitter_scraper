@@ -43,7 +43,7 @@ def preprocess_csv(df):
     """Preprocessa o DataFrame do CSV para análise de sentimento"""
     try:
         df = df[['Content', 'Timestamp']].copy()
-        df['Content'].fillna('', inplace=True)
+        df['Content'] = df['Content'].fillna('')
         df['Identifier'] = [f'tweet{i+1}' for i in range(len(df))]
         return df
     except KeyError as e:
