@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, ValidationError
+from pydantic_settings import BaseSettings  # Corrigido
 import subprocess
 import os
 import logging
@@ -11,17 +12,42 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 from unidecode import unidecode
 import warnings
+from dotenv import load_dotenv
+import uvicorn
+import asyncio
+
 
 # Importar a função save_content_and_analyze_sentiment
 from save_content_and_analyze_sentiment import save_content_and_analyze_sentiment
 
+# Carregar variáveis de ambiente do arquivo .env
+load_dotenv()
+
+# Usar pydantic BaseSettings para gerenciar as variáveis de ambiente
+class Settings(BaseSettings):
+    twitter_username: str = Field(..., env='TWITTER_USERNAME')
+    twitter_password: str = Field(..., env='TWITTER_PASSWORD')
+    tweets_folder: str = Field('./tweets/', env='TWEETS_FOLDER')
+    scraper_timeout: int = Field(90, env='SCRAPER_TIMEOUT')
+    host: str = Field('0.0.0.0', env='HOST')
+    port: int = Field(8001, env='PORT')
+    workers: int = Field(1, env='WORKERS')
+    environment: str = Field('development', env='ENVIRONMENT')  # Define 'development' ou 'production'
+
+    class Config:
+        env_file = '.env'  # Certifica-se de que as variáveis são carregadas do arquivo .env
+
+# Instanciar as configurações
+try:
+    settings = Settings()
+except ValidationError as e:
+    print("Erro ao carregar variáveis de ambiente:")
+    print(e.json())
+    exit(1)  # Sair se variáveis obrigatórias não estiverem presentes
+
 # Configuração do logger com nível DEBUG e inclusão de timestamp nos logs
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-
-# Variáveis de ambiente
-TWEETS_FOLDER = os.getenv('TWEETS_FOLDER', './tweets/')  # Diretório dos arquivos CSV
-SCRAPER_TIMEOUT = int(os.getenv('SCRAPER_TIMEOUT', 90))   # Timeout para o subprocesso
 
 # Expressão regular para validar o username do Twitter
 USERNAME_REGEX = re.compile(r'^[A-Za-z0-9_]{1,15}$')
@@ -41,11 +67,11 @@ def sanitize_username(username: str) -> str:
 
 def execute_scraper(username: str) -> subprocess.CompletedProcess:
     """Executa o comando do scraper de forma segura usando shlex e com timeout."""
-    command = shlex.split(f"python scraper -t 3 -u {username}")
+    command = shlex.split(f"python scraper -t 50 -u {username}")
     try:
         logger.info(f"Executing scraper command: {' '.join(command)}")
         # Adicionando timeout ao subprocesso
-        result = subprocess.run(command, capture_output=True, text=True, timeout=SCRAPER_TIMEOUT)
+        result = subprocess.run(command, capture_output=True, text=True, timeout=settings.scraper_timeout)
         return result
     except subprocess.TimeoutExpired:
         logger.error("O comando do scraper demorou muito tempo para ser executado.")
@@ -75,7 +101,7 @@ def read_root():
     return {"message": "API is working. Use the /scrape endpoint to start scraping."}
 
 @app.post("/scrape")
-def scrape(user_request: UserRequest):
+async def scrape(user_request: UserRequest):
     start_time = time.time()
     username = sanitize_username(user_request.username)
 
@@ -86,23 +112,23 @@ def scrape(user_request: UserRequest):
     try:
         logger.info(f"Starting scraper for user: {username}")
         
-        # Executa o scraper
-        result = execute_scraper(username)
+        # Executa o scraper de forma assíncrona
+        result = await asyncio.to_thread(execute_scraper, username)
         logger.info(f"Scraper output: {result.stdout}")
         logger.error(f"Scraper errors: {result.stderr}")
 
         # Localizar o último CSV gerado na pasta de tweets
-        csv_files = sorted([f for f in os.listdir(TWEETS_FOLDER) if f.endswith('.csv')], key=lambda x: os.path.getmtime(os.path.join(TWEETS_FOLDER, x)))
+        csv_files = sorted([f for f in os.listdir(settings.tweets_folder) if f.endswith('.csv')], key=lambda x: os.path.getmtime(os.path.join(settings.tweets_folder, x)))
         if not csv_files:
             raise HTTPException(status_code=500, detail="No CSV files found.")
         
-        latest_csv = os.path.join(TWEETS_FOLDER, csv_files[-1])
+        latest_csv = os.path.join(settings.tweets_folder, csv_files[-1])
 
         # Validação do CSV
-        df = validate_csv_file(latest_csv)
+        df = await asyncio.to_thread(validate_csv_file, latest_csv)
 
         # Chama a função save_content_and_analyze_sentiment
-        results = save_content_and_analyze_sentiment(latest_csv)
+        results = await asyncio.to_thread(save_content_and_analyze_sentiment, latest_csv)
         
         # Log do tempo de execução
         elapsed_time = time.time() - start_time
@@ -113,8 +139,10 @@ def scrape(user_request: UserRequest):
         logger.error(f"An error occurred: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-    raise HTTPException(status_code=400, detail="Username is required.")
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    # Definir se é ambiente de produção ou desenvolvimento
+    is_dev = settings.environment == 'development'
+
+    # Configuração para produção ou desenvolvimento
+    uvicorn.run("app:app", host=settings.host, port=settings.port, workers=settings.workers, reload=is_dev)
