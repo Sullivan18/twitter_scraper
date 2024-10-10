@@ -74,14 +74,29 @@ custom_dictionary = {
     "tristeza": {
         "triste": -2, "infeliz": -2, "deprimido": -3, "lamentavel": -1, "chateado": -1,
         "desanimado": -2, "abatido": -2, "desolado": -3, "melancolico": -2, "desesperado": -3,
-        "derrotado": -2, "angustiado": -2, "sofrimento": -3, "desamparado": -2,
-        "lamentavel": -2, "miseravel": -3, "tragedia": -3, "dor": -2, "luto": -3
+        "derrotado": -2, "angustiado": -2, "sofrimento": -3, "desamparado": -2, "luto": -3,
+        "miseravel": -3, "tragedia": -3, "dor": -2, "aflito": -2, "solitario": -2,
+        "abandonado": -3, "derrotado": -2, "traição": -3, "pesar": -3, "desesperança": -3,
+        "desgraçado": -3, "ansioso": -2, "isolado": -2, "decepcionado": -2, "arrependido": -2,
+        "envergonhado": -2, "amargurado": -2, "injustiçado": -2, "solidao": -3, "perdido": -2,
+        "humilhado": -3, "constrangido": -2, "rejeitado": -3, "desprezado": -3, "impotente": -2,
+        "frustrado": -2, "fracassado": -3, "desgostoso": -2, "traiçoeiro": -2, "pesaroso": -2,
+        "ansiedade": -2, "raiva": -2, "tensão": -2, "agonia": -3, "pena": -2, "apatia": -2
     },
     "felicidade": {
         "feliz": 2, "alegre": 3, "euforico": 2, "animado": 2, "contente": 1,
-        "entusiasmado": 2, "radiante": 3, "satisfeito": 2, "realizado": 2, "extasiado": 3
+        "entusiasmado": 2, "radiante": 3, "satisfeito": 2, "realizado": 2, "extasiado": 3,
+        "grato": 2, "sereno": 2, "aliviado": 1, "apaixonado": 3, "emocionado": 2,
+        "otimista": 2, "esperançoso": 2, "abençoado": 3, "encantado": 3, "exultante": 3,
+        "afortunado": 2, "felicidade": 3, "paz": 2, "tranquilo": 2, "harmonia": 2,
+        "confortável": 2, "próspero": 3, "vitorioso": 3, "brilhante": 2, "empolgado": 2,
+        "radiante": 3, "confiante": 2, "maravilhado": 3, "jubilosamente": 3, "esperançoso": 2,
+        "generoso": 2, "divertido": 2, "encorajado": 2, "admirado": 2, "conquistador": 3,
+        "positivo": 2, "esperança": 2, "fascinado": 2, "deslumbrado": 3, "digno": 2,
+        "satisfeito": 2, "gratidão": 2, "orgulhoso": 3, "completo": 2, "inspirado": 3
     }
 }
+
 
 def analyze_custom_category(text, dictionary):
     """Analisa o texto usando um dicionário personalizado e retorna a categoria"""
