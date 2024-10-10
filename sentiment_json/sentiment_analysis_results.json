@@ -1,0 +1,29 @@
+[
+    {
+        "Identifier": "tweet1",
+        "Content": "caso pdiddy o verdadeiro diabo de hollywood  a thread\n\nalerta de conteudo sensivel",
+        "Timestamp": "2024-10-09T19:28:31.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.5955227017402649,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet2",
+        "Content": "caso pdiddy o verdadeiro diabo de hollywood  a thread\n\nalerta de conteudo sensivel",
+        "Timestamp": "2024-10-09T19:28:31.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.5955227017402649,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet3",
+        "Content": "diddy segue preso e sob julgamento por todos os crimes que ele cometeu que todas as vitimas sejam vingadas e que esse homem e todas as pessoas envolvidas  acabem na cadeia perdao se faltou alguma coisa e um assunto muito complexo envolve muita gente",
+        "Timestamp": "2024-10-09T23:54:51.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.9397479891777039,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    }
+]
