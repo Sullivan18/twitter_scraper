@@ -1,0 +1,12 @@
+# Ignorar pastas desnecessárias
+tweets/
+dataset/
+__pycache__/
+*.log
+
+# Ignorar arquivos CSV temporários
+*.csv
+
+# Ignorar diretórios de cache e env
+venv/
+.env
