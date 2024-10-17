@@ -149,6 +149,11 @@ def save_content_and_analyze_sentiment(input_csv):
         results = df_content_only.to_dict(orient='records')
         logger.info("Análise concluída e convertida para JSON")
 
+        # Salvar resultados em arquivo JSON
+        json_filename = "./sentiment_json/sentiment_analysis_results.json"
+        with open(json_filename, 'w', encoding='utf-8') as json_file:
+            json.dump(results, json_file, ensure_ascii=False, indent=4)
+        logger.info(f"Resultados salvos em {json_filename}")
 
         return results
     except FileNotFoundError as e:

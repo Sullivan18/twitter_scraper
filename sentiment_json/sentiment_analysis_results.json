@@ -1,0 +1,56 @@
+[
+    {
+        "Identifier": "tweet1",
+        "Content": "artilheiros do ano po os caras que fedem a gol  estamos falando dos maiores goleadores do brasil juntando todos os campeonatos sera que esse ranking muda ate o final do ano",
+        "Timestamp": "2024-10-17T22:58:52.000Z",
+        "Sentiment": "error",
+        "Sentiment_Score": 0.0,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet2",
+        "Content": "cravam y cravam gabi zanotti e eudimilla sao as craques do timao que mais marcaram gols na libertadoresfemininanacazetv  sera que vem mais na final corinthians x santa fe e sabado a partir das 16h na cazetv vemmmmm",
+        "Timestamp": "2024-10-17T22:00:00.000Z",
+        "Sentiment": "error",
+        "Sentiment_Score": 0.0,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet3",
+        "Content": "viva la vida o barca lancou hoje uma camisa em homenagem ao coldplay que sera usada no classico contra o real madrid o clube ja fez outros modelos para homenagear artistas como drake karol g e rolling stones\n\ne ai qual foi a mais braba barcelona",
+        "Timestamp": "2024-10-17T21:47:44.000Z",
+        "Sentiment": "error",
+        "Sentiment_Score": 0.0,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet4",
+        "Content": "esses aqui sabem muito sobre levantar taca se liga nos times que mais conquistaram titulos nacionais aqui no brasil  e ai seu time ta na lista brasileirao",
+        "Timestamp": "2024-10-17T20:00:00.000Z",
+        "Sentiment": "error",
+        "Sentiment_Score": 0.0,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet5",
+        "Content": "meteram essa mesmo e esses dois torcedores que se casaram e apos a festa foram comemorar o casorio no jogo do sport contra o operario pela serie b  hahaha a pior parte e que o leao perdeu por 2 a 1  mas pelo menos os noivos tem outros motivos pra comemorar ne",
+        "Timestamp": "2024-10-17T19:29:00.000Z",
+        "Sentiment": "error",
+        "Sentiment_Score": 0.0,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet6",
+        "Content": "cravam y cravam gabi zanotti e eudimilla sao as craques do timao que mais marcaram gols na libertadoresfemininanacazetv  sera que vem mais na final corinthians x santa fe e sabado a partir das 16h na cazetv vemmmmm",
+        "Timestamp": "2024-10-17T22:00:00.000Z",
+        "Sentiment": "error",
+        "Sentiment_Score": 0.0,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    }
+]
