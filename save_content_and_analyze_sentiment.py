@@ -7,6 +7,9 @@ import warnings
 from unidecode import unidecode
 import requests
 import os
+import json  # Import necessário para salvar o arquivo JSON
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
 
 # Configuração do logger para salvar em arquivo
 logging.basicConfig(
@@ -21,18 +24,6 @@ logger = logging.getLogger(__name__)
 # Suprimir avisos específicos
 warnings.filterwarnings("ignore", category=FutureWarning, module='huggingface_hub.file_download')
 
-# Configuração da API Hugging Face
-API_URL = "https://api-inference.huggingface.co/models/cardiffnlp/twitter-xlm-roberta-base-sentiment"
-HEADERS = {"Authorization": f"Bearer {os.getenv('HUGGINGFACE_TOKEN')}"}
-
-# Função para consultar a API da Hugging Face
-def query_api(text: str) -> dict:
-    payload = {"inputs": text}
-    response = requests.post(API_URL, headers=HEADERS, json=payload)
-    if response.status_code != 200:
-        logger.error(f"Erro na API: {response.text}")
-        return {"label": "error", "score": 0.0}
-    return response.json()
 
 def preprocess_text(text):
     """Preprocessa o texto para melhorar a análise de sentimento."""
@@ -63,17 +54,25 @@ def preprocess_csv(df):
         logger.error(f"KeyError: {e}")
         raise
 
-def analyze_sentiment(text):
-    """Chama a API para análise de sentimento."""
+def analyze_sentiment(text, tokenizer, model):
+    """Realiza a análise de sentimentos"""
     try:
-        response = query_api(text)
-        sentiment_data = response[0]
-        sentiment_label = sentiment_data['label']
-        sentiment_score = sentiment_data['score']
+        inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=512)
+        with torch.no_grad():
+            outputs = model(**inputs)
+        scores = outputs.logits[0]
+        probabilities = torch.nn.functional.softmax(scores, dim=0)
+        sentiment = torch.argmax(probabilities).item()
+        
+        sentiment_labels = ['negative', 'neutral', 'positive']
+        sentiment_label = sentiment_labels[sentiment]
+        sentiment_score = probabilities[sentiment].item()
+        
         return sentiment_label, sentiment_score
     except Exception as e:
-        logger.error(f"Erro na análise de sentimento: {e}")
+        logger.error(f"Error analyzing sentiment for text: {text}. Error: {e}")
         return "error", 0.0
+        
 
 custom_dictionary = {
     "tristeza": {
@@ -121,39 +120,39 @@ def analyze_custom_category(text, dictionary):
         return "neutral", score
 
 def save_content_and_analyze_sentiment(input_csv):
-    """Processa o CSV e realiza a análise de sentimento e categorias personalizadas."""
+    """Processa o CSV, analisa o sentimento e retorna os resultados"""
     try:
+        # Carregamento do modelo e tokenizer apenas uma vez
+        model_name = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        model = AutoModelForSequenceClassification.from_pretrained(model_name)
+        logger.info("Model and tokenizer loaded successfully")
         # Carregar CSV
         df = pd.read_csv(input_csv)
-        logger.info(f"CSV carregado: {input_csv}")
-
-        # Pré-processamento
+        logger.info(f"Input CSV loaded: {input_csv}")
+        
+        # Pré-processamento do CSV
         df = preprocess_csv(df)
-        logger.info("Pré-processamento concluído")
+        logger.info("CSV preprocessed successfully")
 
         # Análise de sentimentos e categorias personalizadas
         df['Content'] = df['Content'].apply(preprocess_text)
-        sentiments = df['Content'].apply(lambda text: analyze_sentiment(text))
-        custom_categories = df['Content'].apply(
-    lambda text: analyze_custom_category(text, custom_dictionary)
-)
-
-
+        sentiments = df['Content'].apply(lambda text: analyze_sentiment(text, tokenizer, model))
+        custom_categories = df['Content'].apply(lambda text: analyze_custom_category(text, custom_dictionary))
+        
         df[['Sentiment', 'Sentiment_Score']] = pd.DataFrame(sentiments.tolist(), index=df.index)
         df[['Custom_Category', 'Custom_Score']] = pd.DataFrame(custom_categories.tolist(), index=df.index)
-
-        # Extrair apenas as colunas relevantes
+        
         df_content_only = df[['Identifier', 'Content', 'Timestamp', 'Sentiment', 'Sentiment_Score', 'Custom_Category', 'Custom_Score']]
-
-        # Converter resultados para JSON
+        
         results = df_content_only.to_dict(orient='records')
-        logger.info("Análise concluída e convertida para JSON")
+        logger.info("Sentiment analysis completed and converted to JSON")
 
-        # Salvar resultados em arquivo JSON
-        json_filename = "./sentiment_json/sentiment_analysis_results.json"
+        # **Salvando o JSON em arquivo**
+        json_filename = "./sentiment_json/sentiment_analysis_results.json"  # Nome do arquivo JSON
         with open(json_filename, 'w', encoding='utf-8') as json_file:
             json.dump(results, json_file, ensure_ascii=False, indent=4)
-        logger.info(f"Resultados salvos em {json_filename}")
+        logger.info(f"Results saved to {json_filename}")
 
         return results
     except FileNotFoundError as e:
@@ -163,13 +162,12 @@ def save_content_and_analyze_sentiment(input_csv):
         logger.error(f"EmptyDataError: {e}")
         raise
     except Exception as e:
-        logger.error(f"Erro inesperado: {e}")
+        logger.error(f"An unexpected error occurred during sentiment analysis: {e}")
         raise
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        logger.error("Uso: python save_content_and_analyze_sentiment.py <input_csv>")
+        logger.error("Usage: python save_content_and_analyze_sentiment.py <input_csv>")
     else:
         input_csv = sys.argv[1]
         results = save_content_and_analyze_sentiment(input_csv)
-        print(results)

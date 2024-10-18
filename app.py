@@ -31,7 +31,6 @@ class Settings(BaseSettings):
     port: int = Field(8001, env='PORT')
     workers: int = Field(1, env='WORKERS')
     environment: str = Field('development', env='ENVIRONMENT')
-    huggingface_token: str = Field(..., env='HUGGINGFACE_TOKEN')
 
     class Config:
         env_file = '.env'
