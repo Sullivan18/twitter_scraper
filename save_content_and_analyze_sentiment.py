@@ -13,43 +13,44 @@ import torch
 
 # Configuração do logger para salvar em arquivo
 logging.basicConfig(
-    level=logging.INFO,  # Nível de log (INFO, ERROR, DEBUG etc.)
-    filename='analysis.log',  # Nome do arquivo de log
-    filemode='w',  # Sobrescreve o arquivo em cada execução
-    format='%(asctime)s - %(levellevel)s - %(message)s'  # Formato do log
+    level=logging.INFO,
+    filename='analysis.log',
+    filemode='w',
+    format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
 # Suprimir avisos específicos
 warnings.filterwarnings("ignore", category=FutureWarning, module='huggingface_hub.file_download')
 
-# Função para análise de sentimentos e categorias personalizadas
+
 def preprocess_text(text):
-    """Preprocessa o texto para melhorar a análise de sentimento"""
+    """Preprocessa o texto para melhorar a análise de sentimento."""
     if not isinstance(text, str):
         text = str(text)
     text = text.lower()
-    text = unidecode(text)  # Remove acentos
-    text = re.sub(r'[^\w\s]', '', text)  # Remove pontuação
+    text = unidecode(text)
+    text = re.sub(r'[^\w\s]', '', text)
     text = text.strip()
     return text
 
 def normalize_word(word):
-    """Normaliza a palavra removendo acentos, convertendo para minúsculas e lematizando"""
+    """Normaliza uma palavra removendo acentos e convertendo para minúsculas."""
     word = unidecode(word.lower())
     if word.endswith('a') and len(word) > 1:
-        word = word[:-1] + 'o'  # Lematização simples
+        word = word[:-1] + 'o'
     return word
 
 def preprocess_csv(df):
-    """Preprocessa o DataFrame do CSV para análise de sentimento"""
+    """Preprocessa o DataFrame do CSV para análise."""
     try:
         df = df[['Content', 'Timestamp']].copy()
-        df['Content'].fillna('', inplace=True)
+        df['Content'] = df['Content'].fillna('').str.strip()
+        df = df[df['Content'] != '']
         df['Identifier'] = [f'tweet{i+1}' for i in range(len(df))]
         return df
     except KeyError as e:
-        logger.error(f"KeyError in preprocessing CSV: {e}")
+        logger.error(f"KeyError: {e}")
         raise
 
 def analyze_sentiment(text, tokenizer, model):
@@ -70,8 +71,8 @@ def analyze_sentiment(text, tokenizer, model):
     except Exception as e:
         logger.error(f"Error analyzing sentiment for text: {text}. Error: {e}")
         return "error", 0.0
+        
 
-# Dicionário expandido de palavras com pesos para categorias de tristeza e felicidade (em português)
 custom_dictionary = {
     "tristeza": {
         "triste": -2, "infeliz": -2, "deprimido": -3, "lamentavel": -1, "chateado": -1,
@@ -100,8 +101,9 @@ custom_dictionary = {
     }
 }
 
+
 def analyze_custom_category(text, dictionary):
-    """Analisa o texto usando um dicionário personalizado e retorna a categoria"""
+    """Analisa o texto usando um dicionário personalizado."""
     score = 0
     words = text.split()
     for word in words:
@@ -124,7 +126,6 @@ def save_content_and_analyze_sentiment(input_csv):
         tokenizer = AutoTokenizer.from_pretrained(model_name)
         model = AutoModelForSequenceClassification.from_pretrained(model_name)
         logger.info("Model and tokenizer loaded successfully")
-
         # Carregar CSV
         df = pd.read_csv(input_csv)
         logger.info(f"Input CSV loaded: {input_csv}")
