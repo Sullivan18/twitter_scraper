@@ -1,55 +1,451 @@
 [
     {
         "Identifier": "tweet1",
-        "Content": "artilheiros do ano po os caras que fedem a gol  estamos falando dos maiores goleadores do brasil juntando todos os campeonatos sera que esse ranking muda ate o final do ano",
-        "Timestamp": "2024-10-17T22:58:52.000Z",
-        "Sentiment": "neutral",
-        "Sentiment_Score": 0.4303942322731018,
+        "Content": "me alegro verte hermano  eres un fenomeno",
+        "Timestamp": "2024-10-16T22:03:28.000Z",
+        "Sentiment": "positive",
+        "Sentiment_Score": 0.9307693243026733,
         "Custom_Category": "neutral",
         "Custom_Score": 0
     },
     {
         "Identifier": "tweet2",
-        "Content": "cravam y cravam gabi zanotti e eudimilla sao as craques do timao que mais marcaram gols na libertadoresfemininanacazetv  sera que vem mais na final corinthians x santa fe e sabado a partir das 16h na cazetv vemmmmm",
-        "Timestamp": "2024-10-17T22:00:00.000Z",
-        "Sentiment": "neutral",
-        "Sentiment_Score": 0.46195095777511597,
+        "Content": "dia do davizinho \nparabens filhao te amo muito",
+        "Timestamp": "2024-08-24T23:38:40.000Z",
+        "Sentiment": "positive",
+        "Sentiment_Score": 0.9155527949333191,
         "Custom_Category": "neutral",
         "Custom_Score": 0
     },
     {
         "Identifier": "tweet3",
-        "Content": "viva la vida o barca lancou hoje uma camisa em homenagem ao coldplay que sera usada no classico contra o real madrid o clube ja fez outros modelos para homenagear artistas como drake karol g e rolling stones\n\ne ai qual foi a mais braba barcelona",
-        "Timestamp": "2024-10-17T21:47:44.000Z",
+        "Content": "the game is mine esportsworldcup  \nshowing everyone how its done",
+        "Timestamp": "2024-08-23T15:19:26.000Z",
         "Sentiment": "positive",
-        "Sentiment_Score": 0.5645946860313416,
+        "Sentiment_Score": 0.6340337991714478,
         "Custom_Category": "neutral",
         "Custom_Score": 0
     },
     {
         "Identifier": "tweet4",
-        "Content": "esses aqui sabem muito sobre levantar taca se liga nos times que mais conquistaram titulos nacionais aqui no brasil  e ai seu time ta na lista brasileirao",
-        "Timestamp": "2024-10-17T20:00:00.000Z",
+        "Content": "sentindo a emocao na blaze \nblaze e a plataforma do crash original e agora tambem do crash neymar jr jogue com a gente jogue com responsabilidade nao ha garantia de ganhos apenas para maiores de 18 anos",
+        "Timestamp": "2024-08-21T23:12:25.000Z",
         "Sentiment": "neutral",
-        "Sentiment_Score": 0.5690466165542603,
+        "Sentiment_Score": 0.4418039321899414,
         "Custom_Category": "neutral",
         "Custom_Score": 0
     },
     {
         "Identifier": "tweet5",
-        "Content": "meteram essa mesmo e esses dois torcedores que se casaram e apos a festa foram comemorar o casorio no jogo do sport contra o operario pela serie b  hahaha a pior parte e que o leao perdeu por 2 a 1  mas pelo menos os noivos tem outros motivos pra comemorar ne",
-        "Timestamp": "2024-10-17T19:29:00.000Z",
-        "Sentiment": "negative",
-        "Sentiment_Score": 0.4417794942855835,
+        "Content": "im back at the  on tuesday watch me stream live in riyadh as i take on the best and see who comes out on top  httpesportsworldcupcomneymar",
+        "Timestamp": "2024-08-18T18:00:43.000Z",
+        "Sentiment": "positive",
+        "Sentiment_Score": 0.5037739276885986,
         "Custom_Category": "neutral",
         "Custom_Score": 0
     },
     {
         "Identifier": "tweet6",
-        "Content": "cravam y cravam gabi zanotti e eudimilla sao as craques do timao que mais marcaram gols na libertadoresfemininanacazetv  sera que vem mais na final corinthians x santa fe e sabado a partir das 16h na cazetv vemmmmm",
-        "Timestamp": "2024-10-17T22:00:00.000Z",
+        "Content": "dia do davizinho \nparabens filhao te amo muito",
+        "Timestamp": "2024-08-24T23:38:40.000Z",
+        "Sentiment": "positive",
+        "Sentiment_Score": 0.9155527949333191,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet7",
+        "Content": "the game is mine esportsworldcup  \nshowing everyone how its done",
+        "Timestamp": "2024-08-23T15:19:26.000Z",
+        "Sentiment": "positive",
+        "Sentiment_Score": 0.6340337991714478,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet8",
+        "Content": "o  esta mandando ver nos originais blaze sao jogos exclusivos com rodadas emocionantes e resultados transparentes qual seu preferido jogue com a gente httpsblazecomptgamescategoryblazeoriginalsutm_sourcetwbrutm_mediumpostutm_campaignpromo",
+        "Timestamp": "2024-08-15T22:09:18.000Z",
         "Sentiment": "neutral",
-        "Sentiment_Score": 0.46195095777511597,
+        "Sentiment_Score": 0.6205974221229553,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet9",
+        "Content": "focus",
+        "Timestamp": "2024-08-07T20:25:50.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.43139344453811646,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet10",
+        "Content": "eu acho que o surf nao e um esporte justopolemica",
+        "Timestamp": "2024-08-05T21:38:42.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.9079899787902832,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet11",
+        "Content": "as pessoas nao entendem o quao eu sou obcecado em vencer",
+        "Timestamp": "2024-08-05T12:09:36.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.8832683563232422,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet12",
+        "Content": "cs2 ta um lixo  muito hack",
+        "Timestamp": "2024-08-03T23:37:28.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.9538065195083618,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet13",
+        "Content": "jogar um joguinho pra relaxar  cs2 help us   hack",
+        "Timestamp": "2024-08-02T20:45:23.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.48483896255493164,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet14",
+        "Content": "mais um dia de trabalho menos um dia de espera",
+        "Timestamp": "2024-07-31T21:19:33.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.5326017141342163,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet15",
+        "Content": "oi amigo",
+        "Timestamp": "2024-07-30T12:25:29.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.5644999146461487,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet16",
+        "Content": "comecamos a semana",
+        "Timestamp": "2024-07-29T15:12:57.000Z",
+        "Sentiment": "positive",
+        "Sentiment_Score": 0.6638458371162415,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet17",
+        "Content": "9zero1",
+        "Timestamp": "2024-07-27T18:30:17.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.49828049540519714,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet18",
+        "Content": "a nossa recompensa esta no esforco nao no resultado um esforco total e uma vitoria completa",
+        "Timestamp": "2024-07-27T17:28:15.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.49416622519493103,
+        "Custom_Category": "felicidade",
+        "Custom_Score": 2
+    },
+    {
+        "Identifier": "tweet19",
+        "Content": "",
+        "Timestamp": "2024-07-26T22:49:29.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.3472995460033417,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet20",
+        "Content": "hoje ela foi conhecer onde o papai trabalha",
+        "Timestamp": "2024-07-25T23:56:50.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.6473345756530762,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet21",
+        "Content": "work",
+        "Timestamp": "2024-07-24T19:59:28.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.38902777433395386,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet22",
+        "Content": "dont give up",
+        "Timestamp": "2024-07-22T15:51:43.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.4032183587551117,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet23",
+        "Content": "training day",
+        "Timestamp": "2024-07-17T00:08:17.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.4448339641094208,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet24",
+        "Content": "sentindo a emocao do crash quem mais curte a adrenalina de escolher a hora de escapar antes do crash blaze e a plataforma do crash original jogue com a gente jogue com responsabilidade nao ha garantia de ganhos apenas para maiores de 18 anos",
+        "Timestamp": "2024-07-16T22:09:36.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.49424728751182556,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet25",
+        "Content": "jogadas emocionantes com  no lounge blaze e nos originais blaze jogue ao vivo agora  httpsblazecomptgamescategoryneymarutm_sourcetwbrutm_mediumpostutm_campaignpromo jogue com responsabilidade nao ha garantia de ganhos apenas para maiores de 18 anos",
+        "Timestamp": "2024-07-10T20:18:26.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.5881648063659668,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet26",
+        "Content": "saudade de estar com voces",
+        "Timestamp": "2024-06-29T19:51:28.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.7200718522071838,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet27",
+        "Content": "golf",
+        "Timestamp": "2024-06-28T19:37:02.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.4388352632522583,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet28",
+        "Content": "la training x",
+        "Timestamp": "2024-06-27T21:06:23.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.42717570066452026,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet29",
+        "Content": "last few days to enter \nfor your chance to win a meet with me or one of the other worldclass players at home plus a holiday away all you need to do is pick up a participating pack and follow the link in my bio for details on how to enter  homeandawaywins cadburyfc",
+        "Timestamp": "2024-06-27T13:29:38.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.6253985166549683,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet30",
+        "Content": "confira   curtindo toda a diversao dos incriveis jogos ao vivo da blaze o classico de tabuleiro agora em 3d e com a emocao do jogo real\nacesse blaze com e jogue com a gente jogue com responsabilidade nao ha garantia de ganhos apenas para maiores de 18 anos",
+        "Timestamp": "2024-06-22T18:03:15.000Z",
+        "Sentiment": "positive",
+        "Sentiment_Score": 0.4528943598270416,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet31",
+        "Content": "work",
+        "Timestamp": "2024-06-13T21:07:13.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.38902777433395386,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet32",
+        "Content": "ferias com treinos  hoje tive a companhia do meu irmao  e  alguns amigos",
+        "Timestamp": "2024-06-13T18:59:43.000Z",
+        "Sentiment": "positive",
+        "Sentiment_Score": 0.6701324582099915,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet33",
+        "Content": "golf",
+        "Timestamp": "2024-06-11T21:25:32.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.4388352632522583,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet34",
+        "Content": "",
+        "Timestamp": "2024-06-11T14:46:21.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.3472995460033417,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet35",
+        "Content": "",
+        "Timestamp": "2024-06-09T23:07:27.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.3472995460033417,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet36",
+        "Content": "treino de quarta feira",
+        "Timestamp": "2024-06-07T19:23:09.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.7835280299186707,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet37",
+        "Content": "meu mano  ta contratado pro show que vou fazer  tmj",
+        "Timestamp": "2024-06-06T20:43:39.000Z",
+        "Sentiment": "positive",
+        "Sentiment_Score": 0.6550082564353943,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet38",
+        "Content": "vamoooo furiaaaa  agora o  chegou",
+        "Timestamp": "2024-06-05T00:01:30.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.4512937366962433,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet39",
+        "Content": "amazing night",
+        "Timestamp": "2024-06-04T18:58:27.000Z",
+        "Sentiment": "positive",
+        "Sentiment_Score": 0.8213744759559631,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet40",
+        "Content": "",
+        "Timestamp": "2024-06-02T22:11:25.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.3472995460033417,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet41",
+        "Content": "enquanto isso vamos somando 1 parabens pelo ano incrivel time voces foram demais e hoje se superaram mais uma vez \nobrigado pelos titulos esse ano  proxima temporada deixa comigo lets go hilali  \nthis year saudi is blue",
+        "Timestamp": "2024-05-31T23:27:57.000Z",
+        "Sentiment": "positive",
+        "Sentiment_Score": 0.8839779496192932,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet42",
+        "Content": "tira meu nome da boca  enfia um sapato na boca e fica quieta  \nnao fode malucaaaaaaa",
+        "Timestamp": "2024-05-31T00:27:27.000Z",
+        "Sentiment": "negative",
+        "Sentiment_Score": 0.6829941868782043,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet43",
+        "Content": "ei  precisamos conversar",
+        "Timestamp": "2024-05-29T22:54:54.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.7252777218818665,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet44",
+        "Content": "work",
+        "Timestamp": "2024-05-28T22:39:56.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.38902777433395386,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet45",
+        "Content": "golf day",
+        "Timestamp": "2024-05-27T18:02:39.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.4296657145023346,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet46",
+        "Content": "ja ja  tem furia na kings league",
+        "Timestamp": "2024-05-26T21:36:52.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.4499541223049164,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet47",
+        "Content": "one more day",
+        "Timestamp": "2024-05-26T17:52:32.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.4238186180591583,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet48",
+        "Content": "campeao saudita  2324",
+        "Timestamp": "2024-05-25T15:32:23.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.5187672972679138,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet49",
+        "Content": "hilal fans at home",
+        "Timestamp": "2024-05-24T23:27:02.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.4688842296600342,
+        "Custom_Category": "neutral",
+        "Custom_Score": 0
+    },
+    {
+        "Identifier": "tweet50",
+        "Content": "the historical  is celebrating how do you feel champion",
+        "Timestamp": "2024-05-24T23:05:20.000Z",
+        "Sentiment": "neutral",
+        "Sentiment_Score": 0.46395817399024963,
         "Custom_Category": "neutral",
         "Custom_Score": 0
     }
