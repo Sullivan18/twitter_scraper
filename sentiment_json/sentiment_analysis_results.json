@@ -1,47 +1,159 @@
-[
-    {
-        "Identifier": "tweet1",
-        "Content": "me alegro verte hermano  eres un fenomeno",
-        "Timestamp": "2024-10-16T22:03:28.000Z",
-        "Sentiment": "positive",
-        "Sentiment_Score": 0.9307693243026733,
-        "Custom_Category": "neutral",
-        "Custom_Score": 0
-    },
-    {
-        "Identifier": "tweet2",
-        "Content": "dia do davizinho \nparabens filhao te amo muito",
-        "Timestamp": "2024-08-24T23:38:40.000Z",
-        "Sentiment": "positive",
-        "Sentiment_Score": 0.9155527949333191,
-        "Custom_Category": "neutral",
-        "Custom_Score": 0
-    },
-    {
-        "Identifier": "tweet3",
-        "Content": "the game is mine esportsworldcup  \nshowing everyone how its done",
-        "Timestamp": "2024-08-23T15:19:26.000Z",
-        "Sentiment": "positive",
-        "Sentiment_Score": 0.6340337991714478,
-        "Custom_Category": "neutral",
-        "Custom_Score": 0
-    },
-    {
-        "Identifier": "tweet4",
-        "Content": "sentindo a emocao na blaze \nblaze e a plataforma do crash original e agora tambem do crash neymar jr jogue com a gente jogue com responsabilidade nao ha garantia de ganhos apenas para maiores de 18 anos",
-        "Timestamp": "2024-08-21T23:12:25.000Z",
-        "Sentiment": "neutral",
-        "Sentiment_Score": 0.4418039321899414,
-        "Custom_Category": "neutral",
-        "Custom_Score": 0
-    },
-    {
-        "Identifier": "tweet5",
-        "Content": "me alegro verte hermano  eres un fenomeno",
-        "Timestamp": "2024-10-16T22:03:28.000Z",
-        "Sentiment": "positive",
-        "Sentiment_Score": 0.9307693243026733,
-        "Custom_Category": "neutral",
-        "Custom_Score": 0
-    }
-]
+{
+    "tweets_analysis": [
+        {
+            "Identifier": "tweet1",
+            "Content": "and of course play a significant role in primaries",
+            "Timestamp": "2024-11-12T06:34:39.000Z",
+            "Sentiment": "positive",
+            "Sentiment_Score": 0.4760134518146515,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Identifier": "tweet2",
+            "Content": "elon i dont want to escape to mars but to expand the lifespan of civilization \n\ntechnically being a multiplanet species would increase the probable lifespan of civilization and life as we know it\n\nhumans dont live forever but just because we dont live forever does not",
+            "Timestamp": "2024-11-12T09:25:57.000Z",
+            "Sentiment": "negative",
+            "Sentiment_Score": 0.5723516345024109,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Identifier": "tweet3",
+            "Content": "",
+            "Timestamp": "2024-11-12T21:59:59.000Z",
+            "Sentiment": "negative",
+            "Sentiment_Score": 0.3472995460033417,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Identifier": "tweet4",
+            "Content": "1 nederland nieuws",
+            "Timestamp": "2024-11-12T21:59:09.000Z",
+            "Sentiment": "neutral",
+            "Sentiment_Score": 0.760022759437561,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Identifier": "tweet5",
+            "Content": "X is 1 in italy",
+            "Timestamp": "2024-11-12T21:50:25.000Z",
+            "Sentiment": "neutral",
+            "Sentiment_Score": 0.8382167816162109,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        }
+    ],
+    "answers_analysis": [
+        {
+            "Category": "Atenção",
+            "Answer_Number": 1,
+            "Content": "Sim, eu me considero multitarefa e geralmente consigo lidar com várias tarefas ao mesmo tempo sem me distrair ou me cansar.",
+            "Sentiment": "neutral",
+            "Sentiment_Score": 0.4510849118232727,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Category": "Atenção",
+            "Answer_Number": 2,
+            "Content": "Tenho mais dificuldade de manter a atenção em atividades que envolvem longas leituras ou reuniões sem interação.",
+            "Sentiment": "negative",
+            "Sentiment_Score": 0.7393178343772888,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Category": "Confiança",
+            "Answer_Number": 1,
+            "Content": "Minha confiança nas pessoas de fora da família é limitada. Costumo ser cauteloso até que eu tenha uma razão para confiar.",
+            "Sentiment": "neutral",
+            "Sentiment_Score": 0.4344845116138458,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Category": "Confiança",
+            "Answer_Number": 2,
+            "Content": "Eu confio em pessoas que demonstram transparência, honestidade e consistência em suas ações.",
+            "Sentiment": "positive",
+            "Sentiment_Score": 0.801417887210846,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Category": "Liderança",
+            "Answer_Number": 1,
+            "Content": "Acredito que a liderança é sobre inspirar e guiar as pessoas para atingirem seus objetivos.",
+            "Sentiment": "positive",
+            "Sentiment_Score": 0.5506334900856018,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Category": "Liderança",
+            "Answer_Number": 2,
+            "Content": "Mobilização, para mim, é a capacidade de motivar e envolver as pessoas em uma causa ou tarefa.",
+            "Sentiment": "positive",
+            "Sentiment_Score": 0.5030942559242249,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Category": "Liderança",
+            "Answer_Number": 3,
+            "Content": "O primeiro seguidor é essencial para validar o líder e mostrar aos demais que o caminho proposto é possível.",
+            "Sentiment": "positive",
+            "Sentiment_Score": 0.6021986603736877,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Category": "Liderança",
+            "Answer_Number": 4,
+            "Content": "Os demais seguidores se unem ao movimento quando veem o valor do propósito e a credibilidade do líder.",
+            "Sentiment": "positive",
+            "Sentiment_Score": 0.5722607970237732,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Category": "Comunicação",
+            "Answer_Number": 1,
+            "Content": "Essa mensagem poderia soar autoritária ou pressionar o destinatário. Seria melhor formular de forma mais colaborativa.",
+            "Sentiment": "negative",
+            "Sentiment_Score": 0.5206393003463745,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Category": "Comunicação",
+            "Answer_Number": 2,
+            "Content": "Uma alternativa melhor poderia ser: 'Oi! Você acha que conseguiria terminar sua parte do projeto até a quarta-feira? Estamos com o prazo um pouco apertado.'",
+            "Sentiment": "neutral",
+            "Sentiment_Score": 0.6758587956428528,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Category": "Comunicação",
+            "Answer_Number": 3,
+            "Content": "Para uma comunicação mais não violenta: 'Eu gostaria de saber se você poderia realizar o que combinamos, para que possamos manter o progresso.'",
+            "Sentiment": "neutral",
+            "Sentiment_Score": 0.558908998966217,
+            "Custom_Category": "neutral",
+            "Custom_Score": 0
+        },
+        {
+            "Category": "Comunicação",
+            "Answer_Number": 4,
+            "Content": "Uma reformulação seria: 'Eu me sinto frustrado quando tenho que esperar muito por respostas. Poderíamos nos comunicar de forma mais frequente?'",
+            "Sentiment": "negative",
+            "Sentiment_Score": 0.9012773036956787,
+            "Custom_Category": "tristeza",
+            "Custom_Score": -2
+        }
+    ]
+}

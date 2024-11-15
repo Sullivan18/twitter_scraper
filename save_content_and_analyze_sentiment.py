@@ -13,44 +13,43 @@ import torch
 
 # Configuração do logger para salvar em arquivo
 logging.basicConfig(
-    level=logging.INFO,
-    filename='analysis.log',
-    filemode='w',
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    level=logging.INFO,  # Nível de log (INFO, ERROR, DEBUG etc.)
+    filename='analysis.log',  # Nome do arquivo de log
+    filemode='w',  # Sobrescreve o arquivo em cada execução
+    format='%(asctime)s - %(levellevel)s - %(message)s'  # Formato do log
 )
 logger = logging.getLogger(__name__)
 
 # Suprimir avisos específicos
 warnings.filterwarnings("ignore", category=FutureWarning, module='huggingface_hub.file_download')
 
-
+# Função para análise de sentimentos e categorias personalizadas
 def preprocess_text(text):
-    """Preprocessa o texto para melhorar a análise de sentimento."""
+    """Preprocessa o texto para melhorar a análise de sentimento"""
     if not isinstance(text, str):
         text = str(text)
     text = text.lower()
-    text = unidecode(text)
-    text = re.sub(r'[^\w\s]', '', text)
+    text = unidecode(text)  # Remove acentos
+    text = re.sub(r'[^\w\s]', '', text)  # Remove pontuação
     text = text.strip()
     return text
 
 def normalize_word(word):
-    """Normaliza uma palavra removendo acentos e convertendo para minúsculas."""
+    """Normaliza a palavra removendo acentos, convertendo para minúsculas e lematizando"""
     word = unidecode(word.lower())
     if word.endswith('a') and len(word) > 1:
-        word = word[:-1] + 'o'
+        word = word[:-1] + 'o'  # Lematização simples
     return word
 
 def preprocess_csv(df):
-    """Preprocessa o DataFrame do CSV para análise."""
+    """Preprocessa o DataFrame do CSV para análise de sentimento"""
     try:
         df = df[['Content', 'Timestamp']].copy()
-        df['Content'] = df['Content'].fillna('').str.strip()
-        df = df[df['Content'] != '']
+        df['Content'].fillna('', inplace=True)
         df['Identifier'] = [f'tweet{i+1}' for i in range(len(df))]
         return df
     except KeyError as e:
-        logger.error(f"KeyError: {e}")
+        logger.error(f"KeyError in preprocessing CSV: {e}")
         raise
 
 def analyze_sentiment(text, tokenizer, model):
@@ -71,8 +70,8 @@ def analyze_sentiment(text, tokenizer, model):
     except Exception as e:
         logger.error(f"Error analyzing sentiment for text: {text}. Error: {e}")
         return "error", 0.0
-        
 
+# Dicionário expandido de palavras com pesos para categorias de tristeza e felicidade (em português)
 custom_dictionary = {
     "tristeza": {
         "triste": -2, "infeliz": -2, "deprimido": -3, "lamentavel": -1, "chateado": -1,
@@ -101,9 +100,8 @@ custom_dictionary = {
     }
 }
 
-
 def analyze_custom_category(text, dictionary):
-    """Analisa o texto usando um dicionário personalizado."""
+    """Analisa o texto usando um dicionário personalizado e retorna a categoria"""
     score = 0
     words = text.split()
     for word in words:
@@ -118,39 +116,67 @@ def analyze_custom_category(text, dictionary):
     else:
         return "neutral", score
 
-def save_content_and_analyze_sentiment(input_csv):
-    """Processa o CSV, analisa o sentimento e retorna os resultados"""
+def save_content_and_analyze_sentiment(input_csv, answers):
+    """Processa o CSV e as respostas, analisa o sentimento e retorna os resultados"""
     try:
         # Carregamento do modelo e tokenizer apenas uma vez
         model_name = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
         tokenizer = AutoTokenizer.from_pretrained(model_name)
         model = AutoModelForSequenceClassification.from_pretrained(model_name)
         logger.info("Model and tokenizer loaded successfully")
+
         # Carregar CSV
-        df = pd.read_csv(input_csv)
+        df_csv = pd.read_csv(input_csv)
         logger.info(f"Input CSV loaded: {input_csv}")
 
         # Pré-processamento do CSV
-        df = preprocess_csv(df)
+        df_csv = preprocess_csv(df_csv)
         logger.info("CSV preprocessed successfully")
 
-        # Análise de sentimentos e categorias personalizadas
-        df['Content'] = df['Content'].apply(preprocess_text)
-        sentiments = df['Content'].apply(lambda text: analyze_sentiment(text, tokenizer, model))
-        custom_categories = df['Content'].apply(lambda text: analyze_custom_category(text, custom_dictionary))
+        # Pré-processamento do conteúdo do CSV
+        df_csv['Content'] = df_csv['Content'].apply(preprocess_text)
 
-        df[['Sentiment', 'Sentiment_Score']] = pd.DataFrame(sentiments.tolist(), index=df.index)
-        df[['Custom_Category', 'Custom_Score']] = pd.DataFrame(custom_categories.tolist(), index=df.index)
+        # Análise de sentimentos e categorias personalizadas para o CSV
+        sentiments_csv = df_csv['Content'].apply(lambda text: analyze_sentiment(text, tokenizer, model))
+        custom_categories_csv = df_csv['Content'].apply(lambda text: analyze_custom_category(text, custom_dictionary))
 
-        df_content_only = df[['Identifier', 'Content', 'Timestamp', 'Sentiment', 'Sentiment_Score', 'Custom_Category', 'Custom_Score']]
+        df_csv[['Sentiment', 'Sentiment_Score']] = pd.DataFrame(sentiments_csv.tolist(), index=df_csv.index)
+        df_csv[['Custom_Category', 'Custom_Score']] = pd.DataFrame(custom_categories_csv.tolist(), index=df_csv.index)
 
-        results = df_content_only.to_dict(orient='records')
-        logger.info("Sentiment analysis completed and converted to JSON")
-        # **Salvando o JSON em arquivo**
-        json_filename = "./sentiment_json/sentiment_analysis_results.json"  # Nome do arquivo JSON
+        df_csv_content_only = df_csv[['Identifier', 'Content', 'Timestamp', 'Sentiment', 'Sentiment_Score', 'Custom_Category', 'Custom_Score']]
+
+        # Processamento das respostas
+        df_answers_list = []
+        for category, texts in answers.items():
+            for idx, text in enumerate(texts):
+                preprocessed_text = preprocess_text(text)
+                sentiment, sentiment_score = analyze_sentiment(preprocessed_text, tokenizer, model)
+                custom_category, custom_score = analyze_custom_category(preprocessed_text, custom_dictionary)
+                df_answers_list.append({
+                    'Category': category,
+                    'Answer_Number': idx + 1,
+                    'Content': text,
+                    'Sentiment': sentiment,
+                    'Sentiment_Score': sentiment_score,
+                    'Custom_Category': custom_category,
+                    'Custom_Score': custom_score
+                })
+
+        df_answers = pd.DataFrame(df_answers_list)
+        logger.info("Answers processed successfully")
+
+        # Combinar os resultados
+        results = {
+            'tweets_analysis': df_csv_content_only.to_dict(orient='records'),
+            'answers_analysis': df_answers.to_dict(orient='records')
+        }
+
+        # Salvar resultados em JSON (se necessário)
+        json_filename = "./sentiment_json/sentiment_analysis_results.json"
         with open(json_filename, 'w', encoding='utf-8') as json_file:
             json.dump(results, json_file, ensure_ascii=False, indent=4)
         logger.info(f"Results saved to {json_filename}")
+
         return results
     except FileNotFoundError as e:
         logger.error(f"FileNotFoundError: {e}")
