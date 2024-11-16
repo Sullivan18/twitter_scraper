@@ -1,159 +1,55 @@
 {
+    "analysis_timestamp": "2024-11-16T15:05:27.000Z",
     "tweets_analysis": [
         {
             "Identifier": "tweet1",
-            "Content": "and of course play a significant role in primaries",
-            "Timestamp": "2024-11-12T06:34:39.000Z",
-            "Sentiment": "positive",
-            "Sentiment_Score": 0.4760134518146515,
+            "Content": "kep1er covers back door by straykids at kcon la 2024",
+            "Timestamp": "2024-07-27T15:04:36.000Z",
+            "Sentiment": "neutral",
+            "Sentiment_Score": 0.6854038238525391,
             "Custom_Category": "neutral",
-            "Custom_Score": 0
+            "Custom_Score": 0,
+            "Analysis_Timestamp": "2024-11-16T15:05:27.000Z"
         },
         {
             "Identifier": "tweet2",
-            "Content": "elon i dont want to escape to mars but to expand the lifespan of civilization \n\ntechnically being a multiplanet species would increase the probable lifespan of civilization and life as we know it\n\nhumans dont live forever but just because we dont live forever does not",
-            "Timestamp": "2024-11-12T09:25:57.000Z",
+            "Content": "babado",
+            "Timestamp": "2024-11-14T20:19:04.000Z",
             "Sentiment": "negative",
-            "Sentiment_Score": 0.5723516345024109,
+            "Sentiment_Score": 0.6555498242378235,
             "Custom_Category": "neutral",
-            "Custom_Score": 0
+            "Custom_Score": 0,
+            "Analysis_Timestamp": "2024-11-16T15:05:27.000Z"
         },
         {
             "Identifier": "tweet3",
-            "Content": "",
-            "Timestamp": "2024-11-12T21:59:59.000Z",
+            "Content": "mds que abominacao",
+            "Timestamp": "2024-11-10T02:43:52.000Z",
             "Sentiment": "negative",
-            "Sentiment_Score": 0.3472995460033417,
+            "Sentiment_Score": 0.961456298828125,
             "Custom_Category": "neutral",
-            "Custom_Score": 0
+            "Custom_Score": 0,
+            "Analysis_Timestamp": "2024-11-16T15:05:27.000Z"
         },
         {
             "Identifier": "tweet4",
-            "Content": "1 nederland nieuws",
-            "Timestamp": "2024-11-12T21:59:09.000Z",
+            "Content": "e por isso que ninguem gosta de voce httpsxcomyongbokcatstayongbokcatstatus1848857486377570585",
+            "Timestamp": "2024-10-22T23:42:18.000Z",
             "Sentiment": "neutral",
-            "Sentiment_Score": 0.760022759437561,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
+            "Sentiment_Score": 0.5327314734458923,
+            "Custom_Category": "felicidade",
+            "Custom_Score": 3,
+            "Analysis_Timestamp": "2024-11-16T15:05:27.000Z"
         },
         {
             "Identifier": "tweet5",
-            "Content": "X is 1 in italy",
-            "Timestamp": "2024-11-12T21:50:25.000Z",
+            "Content": "se m4t3 httpsxcomsertralitiostsertralitiostatus1844805057474367666",
+            "Timestamp": "2024-10-11T22:04:21.000Z",
             "Sentiment": "neutral",
-            "Sentiment_Score": 0.8382167816162109,
+            "Sentiment_Score": 0.7073062658309937,
             "Custom_Category": "neutral",
-            "Custom_Score": 0
-        }
-    ],
-    "answers_analysis": [
-        {
-            "Category": "Atenção",
-            "Answer_Number": 1,
-            "Content": "Sim, eu me considero multitarefa e geralmente consigo lidar com várias tarefas ao mesmo tempo sem me distrair ou me cansar.",
-            "Sentiment": "neutral",
-            "Sentiment_Score": 0.4510849118232727,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
-        },
-        {
-            "Category": "Atenção",
-            "Answer_Number": 2,
-            "Content": "Tenho mais dificuldade de manter a atenção em atividades que envolvem longas leituras ou reuniões sem interação.",
-            "Sentiment": "negative",
-            "Sentiment_Score": 0.7393178343772888,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
-        },
-        {
-            "Category": "Confiança",
-            "Answer_Number": 1,
-            "Content": "Minha confiança nas pessoas de fora da família é limitada. Costumo ser cauteloso até que eu tenha uma razão para confiar.",
-            "Sentiment": "neutral",
-            "Sentiment_Score": 0.4344845116138458,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
-        },
-        {
-            "Category": "Confiança",
-            "Answer_Number": 2,
-            "Content": "Eu confio em pessoas que demonstram transparência, honestidade e consistência em suas ações.",
-            "Sentiment": "positive",
-            "Sentiment_Score": 0.801417887210846,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
-        },
-        {
-            "Category": "Liderança",
-            "Answer_Number": 1,
-            "Content": "Acredito que a liderança é sobre inspirar e guiar as pessoas para atingirem seus objetivos.",
-            "Sentiment": "positive",
-            "Sentiment_Score": 0.5506334900856018,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
-        },
-        {
-            "Category": "Liderança",
-            "Answer_Number": 2,
-            "Content": "Mobilização, para mim, é a capacidade de motivar e envolver as pessoas em uma causa ou tarefa.",
-            "Sentiment": "positive",
-            "Sentiment_Score": 0.5030942559242249,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
-        },
-        {
-            "Category": "Liderança",
-            "Answer_Number": 3,
-            "Content": "O primeiro seguidor é essencial para validar o líder e mostrar aos demais que o caminho proposto é possível.",
-            "Sentiment": "positive",
-            "Sentiment_Score": 0.6021986603736877,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
-        },
-        {
-            "Category": "Liderança",
-            "Answer_Number": 4,
-            "Content": "Os demais seguidores se unem ao movimento quando veem o valor do propósito e a credibilidade do líder.",
-            "Sentiment": "positive",
-            "Sentiment_Score": 0.5722607970237732,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
-        },
-        {
-            "Category": "Comunicação",
-            "Answer_Number": 1,
-            "Content": "Essa mensagem poderia soar autoritária ou pressionar o destinatário. Seria melhor formular de forma mais colaborativa.",
-            "Sentiment": "negative",
-            "Sentiment_Score": 0.5206393003463745,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
-        },
-        {
-            "Category": "Comunicação",
-            "Answer_Number": 2,
-            "Content": "Uma alternativa melhor poderia ser: 'Oi! Você acha que conseguiria terminar sua parte do projeto até a quarta-feira? Estamos com o prazo um pouco apertado.'",
-            "Sentiment": "neutral",
-            "Sentiment_Score": 0.6758587956428528,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
-        },
-        {
-            "Category": "Comunicação",
-            "Answer_Number": 3,
-            "Content": "Para uma comunicação mais não violenta: 'Eu gostaria de saber se você poderia realizar o que combinamos, para que possamos manter o progresso.'",
-            "Sentiment": "neutral",
-            "Sentiment_Score": 0.558908998966217,
-            "Custom_Category": "neutral",
-            "Custom_Score": 0
-        },
-        {
-            "Category": "Comunicação",
-            "Answer_Number": 4,
-            "Content": "Uma reformulação seria: 'Eu me sinto frustrado quando tenho que esperar muito por respostas. Poderíamos nos comunicar de forma mais frequente?'",
-            "Sentiment": "negative",
-            "Sentiment_Score": 0.9012773036956787,
-            "Custom_Category": "tristeza",
-            "Custom_Score": -2
+            "Custom_Score": 0,
+            "Analysis_Timestamp": "2024-11-16T15:05:27.000Z"
         }
     ]
 }

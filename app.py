@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 import uvicorn
 import asyncio
 
+
 from typing import Dict, List, Any  # Import necessário
 
 # Importar a função save_content_and_analyze_sentiment
@@ -137,8 +138,11 @@ async def scrape(user_request: Dict[str, Any]):
         # Validação do CSV
         df = await asyncio.to_thread(validate_csv_file, latest_csv)
 
-        # Chama a função save_content_and_analyze_sentiment com o CSV e as respostas
-        results = await asyncio.to_thread(save_content_and_analyze_sentiment, latest_csv, answers)
+        # Adicione o caminho para o arquivo Excel do dicionário
+        dictionary_excel_path = r"C:\Users\dezin\OneDrive\Documentos\facens\TCC\tweepy\selenium-twitter-scraper\dictionary\Dict.xlsx"
+
+        # Chama a função save_content_and_analyze_sentiment com o CSV e o caminho do dicionário
+        results = await asyncio.to_thread(save_content_and_analyze_sentiment, latest_csv, dictionary_excel_path)
         
         # Log do tempo de execução
         elapsed_time = time.time() - start_time
